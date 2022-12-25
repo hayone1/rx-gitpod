@@ -1,6 +1,7 @@
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 // var numbers = new NumbersObservable(5);
@@ -38,17 +39,25 @@ var _toObservable = new EnumToObservable();
 // _toObservable.ObservableToLookup();
 // _toObservable.GenerateNUmbers();
 
-MagicalPrimeGenerator generator = new();
+// MagicalPrimeGenerator generator = new();
 // foreach(var prime in generator.GeneratePrimesNaive(10)){
 //     // Console.WriteLine("New number ");
 //     Console.Write("{0},",prime);
 // }
-generator.GeneratePrimes(5)
-        .Timestamp()
-        .SubscribeConsole("Prime Generator");
-Console.WriteLine("Generation done");
+// generator.GeneratePrimes(5)
+//         .Timestamp()
+//         .SubscribeConsole("Prime Generator");
+// Console.WriteLine("Generation done");
 
-SearchEngine engine = new();
-engine.search("Observable Search").SubscribeConsole("Start Searching");
+// SearchEngine engine = new();
+// engine.search("Observable Search").SubscribeConsole("Start Searching");
+
+Subject<int> sbj = new();
+
+sbj.SubscribeConsole("First ubject sub");
+
+sbj.SubscribeConsole("Second subject sub");
+
+sbj.OnNext(1); sbj.OnNext(2); sbj.OnCompleted();                        
 Console.ReadLine();
 
